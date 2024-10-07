@@ -4,7 +4,7 @@
 
 1. Ensure your web application is designed to use encryption (https) by default for all network operations and ensure that the processes are in place to renew https certificates.
 2. Employ a content security policy (CSP), employing the following CSP best practices: [tbd]
-  a. use the same CSP in development and production
+   a. use the same CSP in development and production
 4. When selecting open source libraries, frameworks, build tools or similar, take into account open source security best practices - e.g. consider the following Scorecard metrics: [tbd]
 5. Ensure all developers working on the project are using multi-factor authentication to access the soruce repository. [openssf concise guide](https://best.openssf.org/Concise-Guide-for-Developing-More-Secure-Software)
 6. Use package managers such as NPM to automatically manage dependencies and enable updates. [openssf concise guide](https://best.openssf.org/Concise-Guide-for-Developing-More-Secure-Software)
