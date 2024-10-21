@@ -5,11 +5,11 @@
 1. **Ensure your web application is designed to use encryption (HTTPS) by default for all network operations and ensure that the processes are in place to renew HTTPS certificates.**
    - Implementing HTTPS is crucial for securing data in transit. It protects against eavesdropping and man-in-the-middle attacks. Regularly renewing certificates ensures that your encryption remains valid and trusted.
 
-2. **Employ a content security policy (CSP), employing the following CSP best practices: [tbd]; use the same CSP in development and production.**
-   - A CSP helps mitigate cross-site scripting (XSS) and other code injection attacks by specifying which sources of content are trusted. Consistency between development and production environments reduces the risk of misconfigurations.
+2. **Employ a content security policy (CSP)**
+   - A CSP helps mitigate cross-site scripting (XSS) and other code injection attacks by specifying which sources of content are trusted. Consistency between development and production environments reduces the risk of misconfigurations. It is recommended to use the same CSP in development and production to reduce complexity. [MDN Link](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) [OWASP Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Content_Security_Policy_Cheat_Sheet.html)
 
-3. **When selecting open source libraries, frameworks, build tools, or similar, take into account open source security best practices - e.g., consider the following Scorecard metrics: [tbd].**
-   - Evaluating open source components based on security metrics helps ensure that the libraries you use are actively maintained and have a good security track record, reducing potential vulnerabilities in your application.
+3. **When selecting open source libraries, frameworks, build tools, or similar, take into account open source security best practices**
+   - Evaluating open source components based on security metrics helps ensure that the libraries you use are actively maintained and have a good security track record, reducing potential vulnerabilities in your application. Consider the following [Scorecard](https://securityscorecards.dev) metrics: *tbd*
 
 4. **Ensure all developers working on the project are using multi-factor authentication to access the source repository.**
    - Multi-factor authentication (MFA) adds an additional layer of security by requiring more than one form of verification, reducing the risk of unauthorized access to your codebase. [openssf concise guide](https://best.openssf.org/Concise-Guide-for-Developing-More-Secure-Software)
@@ -18,7 +18,7 @@
    - A clear security policy fosters transparency and encourages responsible disclosure of vulnerabilities, allowing you to address issues promptly and maintain user trust. [openssf concise guide](https://best.openssf.org/Concise-Guide-for-Developing-More-Secure-Software)
 
 6. **Perform a threat modeling exercise for your web application.**
-   - Threat modeling helps identify potential security threats and vulnerabilities in your application architecture, enabling you to proactively address risks before they can be exploited. [openssf concise guide](https://best.openssf.org/Concise-Guide-for-Developing-More-Secure-Software) [OWASP guide link needed]
+   - Threat modeling helps identify potential security threats and vulnerabilities in your application architecture, enabling you to proactively address risks before they can be exploited. [openssf concise guide](https://best.openssf.org/Concise-Guide-for-Developing-More-Secure-Software) [OWASP guide to threat modeling](https://owasp.org/www-community/Threat_Modeling)
 
 7. **Implement effective monitoring and logging to detect and respond to security incidents.**
    - Monitoring and logging are essential for identifying suspicious activities and responding to incidents in a timely manner. This practice helps in forensic analysis and improving overall security posture. [openssf concise guide](https://best.openssf.org/Concise-Guide-for-Developing-More-Secure-Software)
