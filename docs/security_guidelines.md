@@ -14,8 +14,8 @@
 4. **Ensure all developers working on the project are using multi-factor authentication to access the source repository.**
    - Multi-factor authentication (MFA) adds an additional layer of security by requiring more than one form of verification, reducing the risk of unauthorized access to your codebase. [openssf concise guide](https://best.openssf.org/Concise-Guide-for-Developing-More-Secure-Software)
 
-5. **Have a documented security policy including how you want people to notify you of security issues in your application (in a `SECURITY.md` file).**
-   - A clear security policy fosters transparency and encourages responsible disclosure of vulnerabilities, allowing you to address issues promptly and maintain user trust. [openssf concise guide](https://best.openssf.org/Concise-Guide-for-Developing-More-Secure-Software)
+5. **Have a documented security policy **
+   - Document (in a `SECURITY.md` file) your security policy, including how you want people to notify you of security issues. A clear security policy fosters transparency and encourages responsible disclosure of vulnerabilities, allowing you to address issues promptly and maintain user trust. [openssf concise guide](https://best.openssf.org/Concise-Guide-for-Developing-More-Secure-Software)
 
 6. **Perform a threat modeling exercise for your web application.**
    - Threat modeling helps identify potential security threats and vulnerabilities in your application architecture, enabling you to proactively address risks before they can be exploited. [openssf concise guide](https://best.openssf.org/Concise-Guide-for-Developing-More-Secure-Software) [OWASP guide to threat modeling](https://owasp.org/www-community/Threat_Modeling)
