@@ -28,25 +28,33 @@
 8. **Prevent injection attacks by validating and sanitizing user inputs.**
    - Input validation and sanitization are critical for preventing injection attacks, such as SQL injection and XSS. Ensuring that user inputs conform to expected formats helps mitigate these risks.
 
+9. **Limit the use of third-party scripts and resources.**
+   - Use *Subresource Integrity* to ensure that third-party resources, like external scripts, haven't been tampered with. This adds an extra layer of protection against third-party script-based attacks. [MDN Link](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity)
+
 ### Back End Recommendations
 
-9. **Use package managers such as NPM to automatically manage dependencies and enable updates.**
+10. **Use package managers such as NPM to automatically manage dependencies and enable updates.**
    - Package managers streamline the process of managing libraries and dependencies, ensuring that you can easily update to the latest versions, which often include important security patches. [openssf concise guide](https://best.openssf.org/Concise-Guide-for-Developing-More-Secure-Software)
 
-10. **Monitor known vulnerabilities in your web app's direct & indirect dependencies.**
+11. **Monitor known vulnerabilities in your web app's direct & indirect dependencies.**
     - Regularly checking for vulnerabilities in both direct and transitive dependencies helps you stay informed about potential security risks and take action to mitigate them. [openssf concise guide](https://best.openssf.org/Concise-Guide-for-Developing-More-Secure-Software)
 
-11. **Keep dependencies (i.e., libraries, polyfills, frameworks, etc.) reasonably up to date.**
+12. **Keep dependencies (i.e., libraries, polyfills, frameworks, etc.) reasonably up to date.**
     - Keeping dependencies up to date minimizes the risk of exploitation through known vulnerabilities. Regular updates should be part of your development lifecycle. [openssf concise guide](https://best.openssf.org/Concise-Guide-for-Developing-More-Secure-Software)
 
-12. **Do not push secrets (such as encrypted tokens or passwords) to a repository.**
+13. **Do not push secrets (such as encrypted tokens or passwords) to a repository.**
     - Storing sensitive information in version control can lead to accidental exposure. Use environment variables or secret management tools to handle sensitive data securely. [openssf concise guide](https://best.openssf.org/Concise-Guide-for-Developing-More-Secure-Software)
 
-13. **Enforce a policy in your repository to review before accepting changes.**
+14. **Enforce a policy in your repository to review before accepting changes.**
     - Implementing a code review process helps catch potential security issues before they are merged into the main codebase, creating a culture of security awareness among developers. [openssf concise guide](https://best.openssf.org/Concise-Guide-for-Developing-More-Secure-Software)
 
-14. **Validate and sanitize all server-side requests to prevent unauthorized access.**
+15. **Validate and sanitize all server-side requests to prevent unauthorized access.**
     - Ensuring that all incoming requests are validated and sanitized helps protect against unauthorized access and various types of attacks, such as server-side request forgery (SSRF). [OWASP SSRF Cheatsheet](https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html)
 
-15. **Lock down your server coniguration**
+16. **Lock down your server coniguration**
     - Ensure that configuration files (e.g., web server, application) are not publicly accessible.
+
+  
+
+
+
