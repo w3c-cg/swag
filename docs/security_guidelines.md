@@ -25,9 +25,7 @@ A CSP helps mitigate [cross-site scripting (XSS)](https://developer.mozilla.org/
 #### See also
 
 - [Content Security Policy guide](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) (MDN)
-
 - [Content Security Policy Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Content_Security_Policy_Cheat_Sheet.html) (OWASP)
-
 - [Strict CSP guide](https://web.dev/articles/strict-csp) (web.dev)
 
 ### Implement monitoring and logging
