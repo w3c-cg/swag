@@ -10,13 +10,25 @@ Ensure your web application is designed to use encryption (HTTPS) by default for
 
 Implementing HTTPS is crucial for securing data in transit. It protects against eavesdropping and man-in-the-middle attacks. Regularly renewing certificates ensures that your encryption remains valid and trusted.
 
-### Employ a content security policy (CSP)
+### Implement a content security policy (CSP)
 
-A CSP helps mitigate cross-site scripting (XSS) and other code injection attacks by specifying which sources of content are trusted. Consistency between development and production environments reduces the risk of misconfigurations. It is recommended to use the same CSP in development and production to reduce complexity.
+A CSP helps mitigate [cross-site scripting (XSS)](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/XSS) and other code injection attacks by specifying which resources a document is allowed to load. A CSP can also help control whether a page can be embedded in another page, thus protecting against [clickjacking](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/Clickjacking), and can help ensure all resources are loaded over HTTPS.
 
-- [MDN Link](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP)
+- To mitigate against XSS, we recommend that you implement a [strict CSP](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP#strict_csp), which uses a [nonce](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP#nonces) or a [hash](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP#hashes) to indicate to the browser which scripts it expects to see in the document. However, any CSP that prevents uncontrolled execution of inline scipts is much better than none.
 
-- [OWASP Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Content_Security_Policy_Cheat_Sheet.html)
+- To enforce the use of trusted types, set the [`require-trusted-types-for`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/require-trusted-types-for) directive. See the [Validate and sanitize user input](#validate-and-sanitize-user-input) guideline.
+
+- To defend against [clickjacking](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/Clickjacking), set the [`frame-ancestors`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/frame-ancestors) directive.
+
+- To help ensure that all resources are loaded over HTTPS, set the [`upgrade-insecure-requests`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/upgrade-insecure-requests) directive. See the [Use HTTPS](#use-https) guideline.
+
+#### See also
+
+- [Content Security Policy guide](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) (MDN)
+
+- [Content Security Policy Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Content_Security_Policy_Cheat_Sheet.html) (OWASP)
+
+- [Strict CSP guide](https://web.dev/articles/strict-csp) (web.dev)
 
 ### Implement monitoring and logging
 
@@ -26,9 +38,23 @@ Monitoring and logging are essential for identifying suspicious activities and r
 
 - [openssf concise guide](https://best.openssf.org/Concise-Guide-for-Developing-More-Secure-Software)
 
-### Validate and sanitize user inputs
+### Validate and sanitize user input
 
-Input validation and sanitization are critical for preventing injection attacks, such as SQL injection and XSS. Ensuring that user inputs conform to expected formats helps mitigate these risks.
+Input validation and sanitization are critical for preventing injection attacks, such as SQL injection and [cross-site scripting (XSS)](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/XSS). Ensuring that user inputs conform to expected formats helps mitigate these risks.
+
+To mitigate SQL injection attacks, use [prepared SQL statements with parameterized queries](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html). This ensures that the user input is treated as data rather than SQL commands.
+
+To mitigate XSS attacks:
+
+- When interpolating input into a page as text, use a reputable templating engine that performs input encoding, and understand the context in which you are interpolating input.
+- When interpolating input as HTML, sanitize it using a reputable library such as [DOMPurify](https://github.com/cure53/DOMPurify). If you're rendering input in the client using DOM APIs like [`innerHTML`](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML), use the [Trusted Types API](https://developer.mozilla.org/en-US/docs/Web/API/Trusted_Types_API) to ensure that input is being passed through a sanitization function.
+
+#### See also
+
+- [SQL Injection Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html) (OWASP)
+- [Cross-site scripting (XSS)](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/XSS) (MDN)
+- [Trusted Types guide](https://web.dev/articles/trusted-types) (web.dev)
+- [Trusted Types API](https://developer.mozilla.org/en-US/docs/Web/API/Trusted_Types_API) (MDN)
 
 ### Limit the use of third-party scripts and resources
 
