@@ -12,7 +12,7 @@ Implementing HTTPS is crucial for securing data in transit. It protects against 
 
 ### Implement a content security policy (CSP)
 
-A CSP helps mitigate [cross-site scripting (XSS)](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/XSS) and other code injection attacks by specifying which resources a document is allowed to load. A CSP can also help control whether a page can be embedded in another page, thus protecting against [clickjacking](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/Clickjacking), and can help ensure all resources are loaded over HTTPS.
+A CSP helps mitigate [cross-site scripting (XSS)](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/XSS) and other code injection attacks by specifying which resources a document is allowed to load. A CSP can also help control whether a page can be embedded in another page, thus protecting against [clickjacking](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/Clickjacking), and can help ensure that all resources are loaded over HTTPS.
 
 - To mitigate against XSS, we recommend that you implement a [strict CSP](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP#strict_csp), which uses a [nonce](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP#nonces) or a [hash](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP#hashes) to indicate to the browser which scripts it expects to see in the document. However, any CSP that prevents uncontrolled execution of inline scipts is much better than none.
 
