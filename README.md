@@ -1,1 +1,1 @@
-This is the repository for the [SWAG Community Group](https://www.w3.org/community/swag/).
+This is the repository for the [SWAG Community Group](https://www.w3.org/community/swag/). This group is run as an open community and is coordinating with other industry bodies including [OpenSSF](https://openssf.org), [OWASP](https://owasp.org) and the [Open JS Foundation](http://openjsf.org).
