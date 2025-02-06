@@ -10,7 +10,9 @@ Ensure your web application uses [HTTPS](https://developer.mozilla.org/en-US/doc
 
 To support HTTPS a web application needs a TLS certificate. [Let's Encrypt](https://letsencrypt.org/) is a widely used nonprofit Certification Authority which issues free TLS certificates.
 
-Modern web hosting services support HTTPS for you, either by default or through a configuration setting.
+Not all TLS configurations are equally secure: if you need to configure your own server, consult a resource such as Mozilla's [TLS Recommended Configurations](https://wiki.mozilla.org/Security/Server_Side_TLS#Recommended_configurations).
+
+Modern web hosting services support HTTPS for you, either by default or through a configuration setting. In this situation, the hosting service is likely to manage your certificate and configure the server on your behalf.
 
 You should serve all pages over HTTPS, not just pages that you consider especially sensitive.
 
