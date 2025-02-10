@@ -6,9 +6,29 @@ This category lists web platform features that you can implement in a web applic
 
 ### Use HTTPS
 
-Ensure your web application is designed to use encryption (HTTPS) by default for all network operations and ensure that the processes are in place to renew HTTPS certificates.
+Ensure your web application uses [HTTPS](https://developer.mozilla.org/en-US/docs/Glossary/HTTPS) (HTTP over [TLS](https://developer.mozilla.org/en-US/docs/Glossary/TLS)) for all its pages and other resources that it loads. Implementing HTTPS is crucial for securing data in transit. It protects against eavesdropping and man-in-the-middle attacks.
 
-Implementing HTTPS is crucial for securing data in transit. It protects against eavesdropping and man-in-the-middle attacks. Regularly renewing certificates ensures that your encryption remains valid and trusted.
+To support HTTPS a web application needs a TLS certificate. [Let's Encrypt](https://letsencrypt.org/) is a widely used nonprofit Certification Authority which issues free TLS certificates.
+
+Not all TLS configurations are equally secure: if you need to configure your own server, consult a resource such as Mozilla's [TLS Recommended Configurations](https://wiki.mozilla.org/Security/Server_Side_TLS#Recommended_configurations).
+
+Modern web hosting services support HTTPS for you, either by default or through a configuration setting. In this situation, the hosting service is likely to manage your certificate and configure the server on your behalf.
+
+You should serve all pages over HTTPS, not just pages that you consider especially sensitive.
+
+When a page loads resources (scripts, stylesheets, fonts, images, and so on), these resources should also be served over HTTPS. If a page is loaded over HTTPS and it attempts to load resources over HTTP, then the browser will either try to upgrade the load request to use HTTPS or will block the request: this is called [mixed content blocking](https://developer.mozilla.org/en-US/docs/Web/Security/Mixed_content).
+
+If it's not possible for you to update your code to load resources from HTTPS URLs (for example, because your HTML has been archived) you can include a [content security policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) that contains the [`upgrade-insecure-requests`](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP#upgrading_insecure_requests) directive, and the browser will automatically upgrade these requests to HTTPS.
+
+To support clients which request pages over HTTP, you can listen for HTTP requests and use a [301 Moved Permanently](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/301) response to redirect to the HTTPS version. If you do this, then you should also send the [HTTP `Strict-Transport-Security`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security) (HSTS) response header: this informs clients that you wish them to use HTTPS, and will cause the browser to connect using HTTPS directly for any subsequent visits, even those made using HTTP URLs.
+
+#### Learn more
+
+- [Let's Encrypt](https://letsencrypt.org/)
+- [TLS Recommended Configurations](https://wiki.mozilla.org/Security/Server_Side_TLS#Recommended_configurations) (Mozilla)
+- [Transport Layer Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Security_Cheat_Sheet.html) (OWASP)
+- [HTTP Strict Transport Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Strict_Transport_Security_Cheat_Sheet.html) (OWASP)
+- [Strict-Transport-Security](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security) (MDN)
 
 ### Implement a content security policy (CSP)
 
@@ -22,7 +42,7 @@ A CSP helps mitigate [cross-site scripting (XSS)](https://developer.mozilla.org/
 
 - To help ensure that all resources are loaded over HTTPS, set the [`upgrade-insecure-requests`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/upgrade-insecure-requests) directive. See the [Use HTTPS](#use-https) guideline.
 
-#### See also
+#### Learn more
 
 - [Content Security Policy guide](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) (MDN)
 - [Content Security Policy Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Content_Security_Policy_Cheat_Sheet.html) (OWASP)
@@ -47,7 +67,7 @@ To mitigate XSS attacks:
 - When interpolating input into a page as text, use a reputable templating engine that performs input encoding, and understand the context in which you are interpolating input.
 - When interpolating input as HTML, sanitize it using a reputable library such as [DOMPurify](https://github.com/cure53/DOMPurify). If you're rendering input in the client using DOM APIs like [`innerHTML`](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML), use the [Trusted Types API](https://developer.mozilla.org/en-US/docs/Web/API/Trusted_Types_API) along with the [`require-trusted-types-for`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/require-trusted-types-for) CSP directive, to ensure that input is being passed through a sanitization function.
 
-#### See also
+#### Learn more
 
 - [SQL Injection Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html) (OWASP)
 - [Cross-site scripting (XSS)](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/XSS) (MDN)
