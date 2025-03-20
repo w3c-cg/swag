@@ -48,6 +48,29 @@ A CSP helps mitigate [cross-site scripting (XSS)](https://developer.mozilla.org/
 - [Content Security Policy Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Content_Security_Policy_Cheat_Sheet.html) (OWASP)
 - [Strict CSP guide](https://web.dev/articles/strict-csp) (web.dev)
 
+### Set the SameSite attribute on sensitive cookies
+
+The [`SameSite`]() cookie attribute is a defense in depth against a variety of attacks, including [clickjacking](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/Clickjacking), [CSRF](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/CSRF) and various [cross-site leaks](https://xsleaks.dev/). It takes one of three values: `Strict`, `Lax`, or `None`.
+
+The strictest value is `Strict`, which prevents the cookie from being included in any cross-site requests: that is, any requests which originate from a different [site](https://developer.mozilla.org/en-US/docs/Glossary/Site) from the site that set the cookie.
+
+However, this will prevent the cookie being included in some cross-site requests for which you might want it. For example, if the user is logged into your site, and the user then clicks a link to your site from a different site, you probably want to show the logged-in version of your page, and for this to happen the request must include the user's cookie.
+
+The `Lax` value is intended to allow for this use case, but offers correspondingly weaker protection against cross-site attacks.
+
+As a general guide, then, you should try to use `Strict` for some cookies and `Lax` for others:
+
+- `Lax` for cookies that you will use to decide if a logged-in user should be shown a page
+- `Strict` for cookies that you will use to authorize requests that carry out some sensitive action, such as transferring money or changing the user's settings.
+
+Note that `Lax` is the default value in some but not all browsers, and in those browsers, the implementation of `Lax` when it is the default is more permissive than the normal implementation of `Lax`. This means that you should actively set `Lax`, and not rely on it being the default.
+
+#### Learn more
+
+- [`SameSite`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Set-Cookie#samesitesamesite-value) (MDN)
+- [SameSite cookies explained](https://web.dev/articles/samesite-cookies-explained) (web.dev)
+- [Bypassing SameSite cookie restrictions](https://portswigger.net/web-security/csrf/bypassing-samesite-restrictions) (PortSwigger)
+
 ### Implement monitoring and logging
 
 Implement effective monitoring and logging to detect and respond to security incidents.
