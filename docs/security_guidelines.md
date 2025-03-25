@@ -50,7 +50,7 @@ A CSP helps mitigate [cross-site scripting (XSS)](https://developer.mozilla.org/
 
 ### Set the SameSite attribute on sensitive cookies
 
-The [`SameSite`](/en-US/docs/Web/HTTP/Reference/Headers/Set-Cookie#samesitesamesite-value) cookie attribute is a defense in depth against a variety of attacks, including [clickjacking](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/Clickjacking), [CSRF](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/CSRF) and various [cross-site leaks](https://xsleaks.dev/). It takes one of three values: `Strict`, `Lax`, or `None`.
+The [`SameSite`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Set-Cookie#samesitesamesite-value) cookie attribute is a defense in depth against a variety of attacks, including [clickjacking](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/Clickjacking), [CSRF](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/CSRF) and various [cross-site leaks](https://xsleaks.dev/). It takes one of three values: `Strict`, `Lax`, or `None`.
 
 The strictest value is `Strict`, which prevents the cookie from being included in any cross-site requests: that is, any requests which originate from a different [site](https://developer.mozilla.org/en-US/docs/Glossary/Site) from the site that set the cookie.
 
