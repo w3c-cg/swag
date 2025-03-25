@@ -50,7 +50,7 @@ A CSP helps mitigate [cross-site scripting (XSS)](https://developer.mozilla.org/
 
 ### Set the SameSite attribute on sensitive cookies
 
-The [`SameSite`]() cookie attribute is a defense in depth against a variety of attacks, including [clickjacking](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/Clickjacking), [CSRF](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/CSRF) and various [cross-site leaks](https://xsleaks.dev/). It takes one of three values: `Strict`, `Lax`, or `None`.
+The [`SameSite`](/en-US/docs/Web/HTTP/Reference/Headers/Set-Cookie#samesitesamesite-value) cookie attribute is a defense in depth against a variety of attacks, including [clickjacking](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/Clickjacking), [CSRF](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/CSRF) and various [cross-site leaks](https://xsleaks.dev/). It takes one of three values: `Strict`, `Lax`, or `None`.
 
 The strictest value is `Strict`, which prevents the cookie from being included in any cross-site requests: that is, any requests which originate from a different [site](https://developer.mozilla.org/en-US/docs/Glossary/Site) from the site that set the cookie.
 
@@ -61,7 +61,7 @@ The `Lax` value is intended to allow for this use case, but offers corresponding
 As a general guide, then, you should try to use `Strict` for some cookies and `Lax` for others:
 
 - `Lax` for cookies that you will use to decide if a logged-in user should be shown a page
-- `Strict` for cookies that you will use to authorize requests that carry out some sensitive action, such as transferring money or changing the user's settings.
+- `Strict` for cookies that you will use to authorize requests that change the server's state, such as transferring money or changing the user's settings.
 
 Note that `Lax` is the default value in some but not all browsers, and in those browsers, the implementation of `Lax` when it is the default is more permissive than the normal implementation of `Lax`. This means that you should actively set `Lax`, and not rely on it being the default.
 
