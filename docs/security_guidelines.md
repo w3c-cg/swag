@@ -80,7 +80,7 @@ Controlling whether your site can be embedded in another site using an [`<iframe
 
 If you don't need your site to be embeddable in other sites, or if you need only certain specific sites to embed your site, implement framing protection using the [`frame-ancestors`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Content-Security-Policy/frame-ancestors) CSP directive and the [`X-Frame-Options`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Frame-Options) HTTP response header.
 
-The `frame-ancestors` directive offers more fine-grained control, allowing you to list sites that are allowed to embed your site. However, `X-Frame-Options` has better support in older browsers. Since browsers that support `frame-ancestors` will ignore `X-Frame-Options`, it is best to include both methods.
+The `frame-ancestors` directive offers more fine-grained control, allowing you to list sites that are allowed to embed your site. However, [`frame-ancestors` is not supported in obsolete browsers, notably Internet Explorer](https://caniuse.com/mdn-http_headers_content-security-policy_frame-ancestors). When both methods are included, browsers that support `frame-ancestors` will ignore `X-Frame-Options`, so it is best to include both methods.
 
 #### Learn more
 
