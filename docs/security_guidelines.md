@@ -97,6 +97,19 @@ To mitigate XSS attacks:
 - [Trusted Types guide](https://web.dev/articles/trusted-types) (web.dev)
 - [Trusted Types API](https://developer.mozilla.org/en-US/docs/Web/API/Trusted_Types_API) (MDN)
 
+### Implement restrictions on framing
+
+Controlling whether your site can be embedded in another site using an [`<iframe>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe) can help protect against [clickjacking](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/Clickjacking) and certain [cross-site leak attacks](https://xsleaks.dev/).
+
+Implement framing protection using the [`frame-ancestors`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Content-Security-Policy/frame-ancestors) CSP directive and the [`X-Frame-Options`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Frame-Options) HTTP response header. If you need your site to be embeddable by specific sites, you can list them in `frame-ancestors`: restrict the configuration as much as possible, to reduce your risk.
+
+The `frame-ancestors` directive offers more fine-grained control than `X-Frame-Options`, allowing you to list sites that are allowed to embed your site. However, [`frame-ancestors` is not supported in obsolete browsers, notably Internet Explorer](https://caniuse.com/mdn-http_headers_content-security-policy_frame-ancestors). When both methods are included, browsers that support `frame-ancestors` will ignore `X-Frame-Options`, so it is best to include both methods.
+
+#### Learn more
+
+- [Clickjacking Defense Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Clickjacking_Defense_Cheat_Sheet.html) (OWASP)
+- [Framing Protections](https://xsleaks.dev/docs/defenses/opt-in/xfo/) (XS-Leaks Wiki)
+
 ### Limit the use of third-party scripts and resources
 
 Use _Subresource Integrity_ to ensure that third-party resources, like external scripts, haven't been tampered with. This adds an extra layer of protection against third-party script-based attacks.
