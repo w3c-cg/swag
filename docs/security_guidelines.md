@@ -86,13 +86,9 @@ When handling a request, a server can examine these headers, and use them to rej
 
 For example:
 
-- In a CSRF attack, the target site accepts HTTP requests that perform some special action, such as transferring the user's money. The attacker then issues this request from the attacker's own site.
+- In a CSRF attack, the target site accepts HTTP requests that perform some special action, such as transferring the user's money. The attacker then issues this request from the attacker's own site. By examining the `Sec-Fetch-Site` header, the target could prevent these requests from being made cross-site, which prevents the attack.
 
-  By examining the `Sec-Fetch-Site` header, the target could prevent these requests from being made cross-site, which prevents the attack.
-
-- Some cross-site leaks depend on an attacker being able to make cross-site requests to load resources that belong to the target.
-
-  By examining fetch metadata headers, the target can block cross-site resource requests, which prevents that attack.
+- Some cross-site leaks depend on an attacker being able to make cross-site requests to load resources that belong to the target. By examining fetch metadata headers, the target can block cross-site resource requests, which prevents that attack.
 
 #### Learn more
 
