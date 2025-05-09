@@ -84,14 +84,13 @@ Fetch metadata headers are a collection of HTTP request headers which provide in
 
 When handling a request, a server can examine these headers, and use them to reject certain cross-site requests, and so defend against the corresponding attacks.
 
-For example:
+To protect against CSRF attacks, you should understand where your site is implementing HTTP requests that change the server's state in a significant way (for example, transferring the user's money), and should consider using Fetch metadata headers to prevent these requests from being made cross-site.
 
-- In a CSRF attack, the target site accepts HTTP requests that perform some special action, such as transferring the user's money. The attacker then issues this request from the attacker's own site. By examining the `Sec-Fetch-Site` header, the target could prevent these requests from being made cross-site, which prevents the attack.
-
-- Some cross-site leaks depend on an attacker being able to make cross-site requests to load resources that belong to the target. By examining fetch metadata headers, the target can block cross-site resource requests, which prevents that attack.
+To protect against certain cross-site leaks, you should decide whether you need other sites to be able to load your site's resources, and either block cross-site loads entirely or only allow them for allowlisted sites. This is called a _Resource Isolation Policy_.
 
 #### Learn more
 
+- [Defend against CSRF using Fetch metadata](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/CSRF#fetch_metadata) (MDN)
 - [Protect your resources from web attacks with Fetch Metadata](https://web.dev/articles/fetch-metadata) (web.dev)
 - [Isolation Policies](https://xsleaks.dev/docs/defenses/isolation-policies/) (xsleaks.dev)
 
