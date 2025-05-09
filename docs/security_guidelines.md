@@ -71,6 +71,34 @@ Note that `Lax` is the default value in some but not all browsers, and in those 
 - [SameSite cookies explained](https://web.dev/articles/samesite-cookies-explained) (web.dev)
 - [Bypassing SameSite cookie restrictions](https://portswigger.net/web-security/csrf/bypassing-samesite-restrictions) (PortSwigger)
 
+### Use Fetch metadata to defend against cross-site attacks
+
+Many attacks, including [CSRF](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/CSRF) and some [cross-site leaks](https://xsleaks.dev/), depend on an attacker's site making an HTTP request to the target site: that is, making a cross-site request.
+
+Fetch metadata headers are a collection of HTTP request headers which provide information about the context of an HTTP request. Fetch metadata headers include:
+
+- [`Sec-Fetch-Site`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Sec-Fetch-Site): Whether the request is same-origin, same-site, or cross-site.
+- [`Sec-Fetch-Mode`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Sec-Fetch-Mode): The request's [`mode`](https://developer.mozilla.org/en-US/docs/Web/API/Request/mode).
+- [`Sec-Fetch-User`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Sec-Fetch-User): Whether the request is a user-initiated navigation.
+- [`Sec-Fetch-Dest`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Sec-Fetch-Dest): The request's [`destination`](https://developer.mozilla.org/en-US/docs/Web/API/Request/destination).
+
+When handling a request, a server can examine these headers, and use them to reject certain cross-site requests, and so defend against the corresponding attacks.
+
+For example:
+
+- In a CSRF attack, the target site accepts HTTP requests that perform some special action, such as transferring the user's money. The attacker then issues this request from the attacker's own site.
+
+  By examining the `Sec-Fetch-Site` header, the target could prevent these requests from being made cross-site, which prevents the attack.
+
+- Some cross-site leaks depend on an attacker being able to make cross-site requests to load resources that belong to the target.
+
+  By examining fetch metadata headers, the target can block cross-site resource requests, which prevents that attack.
+
+#### Learn more
+
+- [Protect your resources from web attacks with Fetch Metadata](https://web.dev/articles/fetch-metadata) (web.dev)
+- [Isolation Policies](https://xsleaks.dev/docs/defenses/isolation-policies/) (xsleaks.dev)
+
 ### Implement monitoring and logging
 
 Implement effective monitoring and logging to detect and respond to security incidents.
