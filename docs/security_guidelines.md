@@ -71,6 +71,29 @@ Note that `Lax` is the default value in some but not all browsers, and in those 
 - [SameSite cookies explained](https://web.dev/articles/samesite-cookies-explained) (web.dev)
 - [Bypassing SameSite cookie restrictions](https://portswigger.net/web-security/csrf/bypassing-samesite-restrictions) (PortSwigger)
 
+### Use Fetch metadata to defend against cross-site attacks
+
+Many attacks, including [CSRF](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/CSRF) and some [cross-site leaks](https://xsleaks.dev/), depend on an attacker's site making an HTTP request to the target site: that is, making a cross-site request.
+
+Fetch metadata headers are a collection of HTTP request headers which provide information about the context of an HTTP request. Fetch metadata headers include:
+
+- [`Sec-Fetch-Site`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Sec-Fetch-Site): Whether the request is same-origin, same-site, or cross-site.
+- [`Sec-Fetch-Mode`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Sec-Fetch-Mode): The request's [`mode`](https://developer.mozilla.org/en-US/docs/Web/API/Request/mode).
+- [`Sec-Fetch-User`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Sec-Fetch-User): Whether the request is a user-initiated navigation.
+- [`Sec-Fetch-Dest`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Sec-Fetch-Dest): The request's [`destination`](https://developer.mozilla.org/en-US/docs/Web/API/Request/destination).
+
+When handling a request, a server can examine these headers, and use them to reject certain cross-site requests, and so defend against the corresponding attacks.
+
+To protect against CSRF attacks, you should understand where your site is implementing HTTP requests that change the server's state in a significant way (for example, transferring the user's money), and should consider using Fetch metadata headers to prevent these requests from being made cross-site.
+
+To protect against certain cross-site leaks, you should decide whether you need other sites to be able to load your site's resources, and either block cross-site loads entirely or only allow them for allowlisted sites. This is called a _Resource Isolation Policy_.
+
+#### Learn more
+
+- [Defend against CSRF using Fetch metadata](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/CSRF#fetch_metadata) (MDN)
+- [Protect your resources from web attacks with Fetch Metadata](https://web.dev/articles/fetch-metadata) (web.dev)
+- [Isolation Policies](https://xsleaks.dev/docs/defenses/isolation-policies/) (xsleaks.dev)
+
 ### Implement monitoring and logging
 
 Implement effective monitoring and logging to detect and respond to security incidents.
