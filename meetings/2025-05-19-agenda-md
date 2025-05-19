@@ -1,0 +1,42 @@
+# W3C SWAG Minutes - Mon 19 May 2025
+
+Present: Dan, Martina, Aaron, Simone
+
+## Regulatory & Policy First Stab
+
+https://github.com/w3c-cg/swag/pull/25
+
+Dan: this is a draft that tries to get across the key points specifically focusing on CRA
+
+Martina: Is CRA also dependent on the countries and how they are implementing it?
+
+Dan: yes but I think it's not so relevant to web developers
+
+Dan: the PR is in draft - let's contimue to work on it in Draft and then we can try to merge by next meeting?
+
+## Survey of Web Developers
+
+Dan: any chance to talk to Dom?
+
+Simone: Plan for survey:
+
+> 1. Create an issue in the web-platform-dx/developer-research repository, along the lines of:
+https://github.com/web-platform-dx/developer-research/issues/19
+(If the goal is to re-run the survey, the new issue should typically link to that one!).  
+> 2. Come and present the idea at an upcoming WebDX CG meeting (every other Thursday at 3pm UTC, next one on 29 May) to gather feedback on the survey and assess interest from MDN people. You may not get a lot of feedback, but at least people will be aware that this is upcoming.  
+> 3. Work with Ruth (@Rumyra on GitHub) to run the survey on MDN and collect results. They may handle the survey as part of the mdn/short-surveys repository (but that repository is still private for the time being):
+https://github.com/mdn/short-surveys/discussions. 
+> 4. Once the survey has run, gather raw results from Ruth, and prepare a PR against developer-research with the data and an interpretation, as done in:
+https://github.com/web-platform-dx/developer-research/tree/main/mdn-short-surveys/2023-05-15-security-dx. 
+
+## AOB
+
+Aaron: Use of company engineering blog -- security engineering blog -- very technical -- talking about projects that are building defenses.  Can use as a way to get the word out about this group.  Will tie together with other big open source ecosystem ... also a call to action: come join us in SWAG. 
+
+
+
+
+
+
+
+
