@@ -17,9 +17,10 @@ Summary: The European CRA applies to manufacturers of "products with digital ele
 
 #### Relevance to Web Developers:
 
-* The CRA is liikely not directly applicable to general web sites or web apps deployed directly from a server.  The CRA excludes web sites that do not support a product's digital functionality.
+* The CRA is likely not directly applicable to general web sites or web apps deployed directly from a server.  The CRA excludes web sites that do not support a product's digital functionality.
 * The CRA may apply if your web site or web app is integral to the function of a digital product - for example, if your web app is instrumental in controling an IOT device.
 * The CRA may apply if your web site or web app is integrated into a packaged application - for example, if it appears in a web view.
+* The CRA most likely applies to your libraries, frameworks and tools that you sell or make available as part of a paid service to be used in other web sites. In this case your product is not the website which is not regualted by CRA but the software component placed on the market standalone as consumeable software product.
 * Open source library developers, if they expect that their libraries may be used by those developing PDEs, should consider how their software is "stewarded" and especially how they recveive and respond to security vulnerability reports.
 * Open source library developers should havea a published security policy and should consider open our security guidelines for library and framework developers. This is because the CRA directs downstream users (particularly those classed as "manufacturers" of PDEs) to perform due dilligence on any open source component that they incorporate into their products.
 * The OpenSSF have produced a [Brief Guide for Open Source Software (OSS) Developers](https://best.openssf.org/CRA-Brief-Guide-for-OSS-Developers) when it comes to understanding the  CRA.
