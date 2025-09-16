@@ -148,7 +148,7 @@ To mitigate this:
 - Implement URL validation:
   - Ensure that the server can only make requests to the URLs you expect.
   - If possible, ensure that the server can only make HTTPS requests (and especially not other schemes such as `file:`).
-  - Check that URL redirects can't be used as a mechanism to evade URL validation.
+  - Ensure that URL redirects can't be used as a mechanism to evade URL validation.
 - Restrict the public-facing server's network access as far as possible: especially, restrict the server's access to any internal networks.
 - Log and monitor requests that the server makes.
 
