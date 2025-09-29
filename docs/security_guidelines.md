@@ -141,9 +141,21 @@ Use _Subresource Integrity_ to ensure that third-party resources, like external 
 
 ### Validate and sanitize all server-side requests
 
-Ensuring that all incoming requests are validated and sanitized helps protect against unauthorized access and various types of attacks, such as server-side request forgery (SSRF).
+Servers that make network requests on behalf of clients are potentially vulnerable to [Server-Side Request Forgery (SSRF)](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/SSRF) attacks.
 
-- [OWASP SSRF Cheatsheet](https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html)
+To mitigate this:
+
+- Implement URL validation:
+  - Ensure that the server can only make requests to the URLs you expect.
+  - If possible, ensure that the server can only make HTTPS requests (and especially not other schemes such as `file:`).
+  - Ensure that URL redirects can't be used as a mechanism to evade URL validation.
+- Restrict the public-facing server's network access as far as possible: especially, restrict the server's access to any internal networks.
+- Log and monitor requests that the server makes.
+
+#### Learn more
+
+- [Server-Side Request Forgery Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html) (OWASP)
+- [SSRF](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/SSRF) (MDN)
 
 ## Security practices
 
