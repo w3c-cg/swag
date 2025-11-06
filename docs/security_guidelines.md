@@ -220,3 +220,37 @@ Implementing a code review process helps catch potential security issues before 
 ### Lock down your server configuration
 
 Ensure that configuration files for your web server are not publicly accessible.
+
+### Protect object prototypes
+
+On the client-side as well as on the server-side (Node.js, Deno, Bun), properties in Javascript/TypeScript object prototypes can be modified. When done by an attacker, malicious values can unexpectedly appear on objects in your application leading to [JavaScript prototype pollution](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/Prototype_pollution) attacks.
+
+To mitigate this:
+
+When creating objects:
+
+- Evaluate if an object is needed or if a [`Map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) or [`Set`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) would be the better choice.
+- When passing objects to other functions, such as [`RequestInit`](https://developer.mozilla.org/en-US/docs/Web/API/RequestInit) or [`SanitizerConfig`](https://developer.mozilla.org/en-US/docs/Web/API/SanitizerConfig), either ensure that all keys are defined or use [null-prototype objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object#null-prototype_objects).
+- When creating objects that will be dynamically modified later (e.g., via `obj[key] = value`), also create them as null-prototype objects.
+
+When accepting user input, either via URL query strings, JSON payloads, or function parameters:
+
+- Always validate user input with a schema validator. Reject unrecognized properties and set default values for missing properties.
+- Functions that receive objects as parameters should either make sure all expected keys are defined on the object itself (by setting default values), or first check if the key exists on the object itself (e.g., via [`Object.hasOwn()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwn) before accessing it.
+- Prefer [`for...of`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of) and [`Object.keys()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys) over [`for...in`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in) loops.
+
+For built-in and third party objects:
+
+- Consider freezing built-in and third party objects, for example by using the [SES](https://github.com/endojs/endo/tree/master/packages/ses#ses) shim.
+
+Runtime defenses:
+
+- Use `--disable-proto` in Node.js to disable `Object.prototype.__proto__`.
+- Use `delete Object.prototype.__proto__` in non-Node environments.
+
+#### Learn more
+
+- [JavaScript Prototype Pollution (MDN)](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/Prototype_pollution)
+- [OWASP: Prototype pollution prevention cheat sheet](https://cheatsheetseries.owasp.org/cheatsheets/Prototype_Pollution_Prevention_Cheat_Sheet.html#other-resources)
+- [Client-side prototype pollution](https://github.com/BlackFan/client-side-prototype-pollution)
+- [Server-side prototype pollution](https://github.com/KTH-LangSec/server-side-prototype-pollution)
