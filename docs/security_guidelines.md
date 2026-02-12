@@ -220,3 +220,18 @@ Implementing a code review process helps catch potential security issues before 
 ### Lock down your server configuration
 
 Ensure that configuration files for your web server are not publicly accessible.
+
+### Verify access to objects
+
+Insufficient access control and insecure exposure of object identifiers, such as database keys or file paths can lead to [Insecure Direct Object Reference (IDOR)](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/IDOR) attacks.
+
+To mitigate this:
+
+- Always verify that the authenticated user is authorized to access or modify the object.
+- Avoid exposing predictable, sequential, or sensitive object identifiers (like user IDs or email addresses).
+- Use more complex IDs that are harder to predict (for example, UUIDs).
+
+#### Learn more
+
+- [Insecure Direct Object Reference Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet.html) (OWASP)
+- [Insecure Direct Object Reference (IDOR)](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/IDOR) (MDN)
