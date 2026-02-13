@@ -18,13 +18,21 @@ The questions we asked fall into two groups:
 We asked web developers:
 
 - Do you implement any mechanism to control whether third-party sites can embed your site as an iframe?
+
 - When you set cookies that contain a user's login credentials (such as a session ID), do you set the SameSite attribute to "Lax" or "Strict", to control whether the cookie is included in cross-site requests?
+
 - When you set cookies that contain sensitive user information (such as a session ID), do you set the Secure attribute to ensure they are only sent over an encrypted (HTTPS) connection?
+
 - When you set cookies, do you use the HttpOnly attribute to prevent them from being accessed by client-side JavaScript?
+
 - Do you use Fetch metadata to control whether certain cross-site requests are allowed?
+
 - Do you use CSRF tokens in forms on your site?
+
 - Do you use a Content-Security-Policy header on your site?
+
 - Do you set the "integrity" attribute on scripts you load from a third-party site such as a CDN?
+
 - Do you enforce the use of Trusted Types when passing input into JavaScript injection sinks such as innerHTML?
 
 We've summarised the results in the following table:
