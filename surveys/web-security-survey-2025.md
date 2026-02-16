@@ -87,7 +87,7 @@ If a developer doesn't use a feature, it might be for a variety of reasons:
 
 Without understanding what the reasons are, it's hard for us to know what, if anything, we could do to encourage adoption of a feature.
 
-We were aware of this limitation before running the survey and asked respondents if they would be willing to participate in an interview in which we could dig deeper. However, we didn't get enough volunteers for this to be effective. We'd still be very happy to talk to web developers though!
+We were aware of this limitation before running the survey and asked respondents if they would be willing to participate in an interview in which we could dig deeper. However, we didn't get enough volunteers for this to be effective. If you're reading this and would like to talk to us, we'd still be very happy to talk you!
 
 ## Future work
 
