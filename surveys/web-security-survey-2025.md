@@ -2,7 +2,7 @@
 
 The W3C Security Application Guidelines Community Group (SWAG CG) develops and publishes [recommendations to help web developers secure their applications](https://github.com/w3c-cg/swag/blob/main/docs/security_guidelines.md).
 
-We wanted to understand whether web developers are using the features that we recommend, so in in 2025/2026 we ran a survey that asked web developers to tell us which features they used.
+We wanted to understand whether web developers are using the features that we recommend, so in 2025/2026 we ran a survey that asked web developers to tell us which features they used.
 
 ## Respondents
 
@@ -87,7 +87,7 @@ If a developer doesn't use a feature, it might be for a variety of reasons:
 
 Without understanding what the reasons are, it's hard for us to know what, if anything, we could do to encourage adoption of a feature.
 
-We were aware of this limitation before running the survey and asked respondents if they would be willing to participate in an interview in which we could dig deeper. However, we didn't get enough volunteers for this to be effective.
+We were aware of this limitation before running the survey and asked respondents if they would be willing to participate in an interview in which we could dig deeper. However, we didn't get enough volunteers for this to be effective. We'd still be very happy to talk to web developers though!
 
 ## Future work
 
