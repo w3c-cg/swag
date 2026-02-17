@@ -12,6 +12,8 @@ We asked for respondents through social media channels belonging to the W3C and 
 - 62% rated their general web development knowledge as "expert"
 - 70% rated their web security knowledge as "intermediate", 18% as "expert"
 
+We also asked respondents whether they were responsible themselves for securing their sites, or whether they delegated to security specialists: 77% of respondents told us that they were responsible for security themselves.
+
 ## Responses
 
 The questions we asked fall into two groups:
