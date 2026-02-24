@@ -53,7 +53,7 @@ Adoption of [CSP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CSP) 
 
 The least-used feature we asked about was [trusted types](https://developer.mozilla.org/en-US/docs/Web/API/Trusted_Types_API), which saw only a little more than 25% adoption: perhaps this is not surprising as it has only recently gained cross-browser support.
 
-The only other feature to be used by less than 50% of respondents was fetch metadata. Fetch metadata is an ergonomic and very useful API, and has been supported in most browsers for several years. However, until recently, documentation of it in both OWASP and MDN has been lacking: so we might speculate that lack of adoption results from a lack of awareness. Both sites now recommend fetch metadata as part of a defense against attacks like [CSRF](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/CSRF#fetch_metadata) and [cross-site leaks](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/XS-Leaks#fetch_metadata), so we might expect to see increased adoption in future.
+The only other feature to be used by less than 50% of respondents was fetch metadata. Fetch metadata is an ergonomic and very useful API, and has been supported in most browsers for several years. However, until recently, documentation of it in both OWASP and MDN has been lacking: so we might speculate that lack of adoption results from a lack of awareness.
 
 Only a little over 50% of respondents used the `integrity` attribute (also known as [Subresource Integrity (SRI)](https://developer.mozilla.org/en-US/docs/Web/Security/Defenses/Subresource_Integrity)): this might reflect the fact that SRI is only relevant for websites that use resources hosted on a different site. This is definitely a case where it would be helpful to have more insight into the reasons developer have for the choices they make.
 
@@ -91,11 +91,34 @@ Without understanding what the reasons are, it's hard for us to know what, if an
 
 We were aware of this limitation before running the survey and asked respondents if they would be willing to participate in an interview in which we could dig deeper. However, we didn't get enough volunteers for this to be effective. If you're reading this and would like to talk to us, we'd still be very happy to talk you!
 
-## Future work
+## Our findings
 
-As noted in the previous section, we'd like to understand the reasons developers have for using or not using security-related web platform features.
+### Web developers need security documentation
 
-We speculated that low adoption of fetch metadata could be related to awareness, and we still know of some documentation gaps here: in particular, there is no standalone guide on MDN presenting the fetch metadata headers.
+Our respondents were almost all generalist web developers: less than 5% described themselves as security specialists, and only 18% described their web security knowledge as "expert".
+
+However, more than three quarters of them reported that they were responsible themselves for implementing security features and practices, rather than delegating to specialists.
+
+This supports our belief, in SWAG CG, that we need web security documentation that is accessible to generalist web developers. It's not enough to present web security as a separate field: although it's great to have specialist security documentation that explores the domain in depth, we also need documentation, aimed at all web developers, to introduce the issues, provide context, and describe the relationship between the features that web developers need to implement and the security considerations that apply to them.
+
+### Deeper insights are needed
+
+In this survey we've only asked developers which features they use. But if a developer doesn't use a feature, it might be for a variety of reasons:
+
+- The feature isn't applicable to their use case
+- The feature is too difficult to use
+- The developer doesn't know about the feature
+- The developer doesn't understand how to use it
+
+Without understanding what the reasons are, it's hard for us to know what, if anything, we could do to encourage adoption of a feature.
+
+We were aware of this limitation before running the survey and asked respondents if they would be willing to participate in an interview in which we could dig deeper. However, we didn't get enough volunteers for this to be effective. If you're reading this and would like to talk to us, we'd still be very happy to talk to you!
+
+### Missing content
+
+Even given the limitation we've just discussed, the survey suggests some documentation gaps.
+
+In particular, as we've noted, it's plausible that the relatively low adoption of fetch metadata is related to a lack of awareness. Until last year, fetch metadata was not well documented on MDN or OWASP. This situation has recently been improved: OWASP now lists fetch metadata as a [defense against CSRF](https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html#fetch-metadata-headers), and MDN describes its use against both [CSRF](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/CSRF#fetch_metadata) and [cross-site leaks](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/XS-Leaks#fetch_metadata). However, MDN should also have a standalone guide to fetch metadata on MDN, to go alongside guides on other [defenses](https://developer.mozilla.org/en-US/docs/Web/Security/Defenses) such as [Subresource Integrity](https://developer.mozilla.org/en-US/docs/Web/Security/Defenses/Subresource_Integrity) and [TLS](https://developer.mozilla.org/en-US/docs/Web/Security/Defenses/Transport_Layer_Security).
 
 ## Thanks
 
