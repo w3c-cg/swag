@@ -78,19 +78,6 @@ The most-used header here is `Strict-Transport-Security`, at 85%, but we might e
 
 It is also surprising `X-Content-Type-Options` is used by less than half our respondents: it is always recommended and is also checked for in the Observatory.
 
-## Uncovering the reasons
-
-If a developer doesn't use a feature, it might be for a variety of reasons:
-
-- The feature isn't applicable to their use case
-- The feature is too difficult to use
-- The developer doesn't know about the feature
-- The developer doesn't understand how to use it
-
-Without understanding what the reasons are, it's hard for us to know what, if anything, we could do to encourage adoption of a feature.
-
-We were aware of this limitation before running the survey and asked respondents if they would be willing to participate in an interview in which we could dig deeper. However, we didn't get enough volunteers for this to be effective. If you're reading this and would like to talk to us, we'd still be very happy to talk you!
-
 ## Our findings
 
 ### Web developers need security documentation
