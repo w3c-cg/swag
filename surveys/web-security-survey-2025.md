@@ -109,4 +109,4 @@ In particular, as we've noted, it's plausible that the relatively low adoption o
 
 ## Thanks
 
-Thanks to all the members of SWAG CG who helped shape this survey, everyone who helped publicise it, and, especially, to everyone who took the time to respond.
+Thanks to all the members of [SWAG CG](https://www.w3.org/community/swag/) who helped shape this survey, everyone who helped publicise it, and, especially, to everyone who took the time to respond.
