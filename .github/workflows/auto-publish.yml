@@ -13,5 +13,5 @@ jobs:
         with:
           GH_PAGES_BRANCH: gh-pages
           SOURCE: docs/swag.html‎
-          DESTINATION: index.html
+          DESTINATION: docs/swag.html
           TOOLCHAIN: respec
