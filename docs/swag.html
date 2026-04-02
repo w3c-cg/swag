@@ -38,7 +38,7 @@
     </script>
   </head>
 <body>
-  
+
 <section id="abstract">
 Secure Web Application Guidelines (SWAG) provide recommendations on how to develop more secure web applications. SWAG are best practices you can follow to reduce the risk of introducing security vulnerabilities into your web application, or help you respond to vulnerabilities. In this document, we collect web platform features that you can implement in a web application and practices you can follow to help mitigate or respond to various attacks.
 
@@ -46,7 +46,7 @@ The SWAG document is developed in context of the <a href="https://github.com/oss
 </section>
 
 <section id="sotd"></section>
-  
+
 <section class="introductory">
 
 ## Audiences for This Document {#audience}
@@ -84,14 +84,14 @@ To support clients which request pages over HTTP, you can listen for HTTP reques
 - [Transport Layer Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Security_Cheat_Sheet.html) (OWASP)
 - [HTTP Strict Transport Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Strict_Transport_Security_Cheat_Sheet.html) (OWASP)
 - [Strict-Transport-Security](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security) (MDN)
-  
+
 ### Implement a strict Content Security Policy (CSP)
 
 A CSP helps mitigate [cross-site scripting (XSS)](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/XSS) and other code injection attacks by specifying which resources a document is allowed to load. A CSP can also help control whether a page can be embedded in another page, thus protecting against [clickjacking](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/Clickjacking), and can help ensure that all resources are loaded over HTTPS.
 
 - To mitigate against XSS, we recommend that you implement a [strict CSP](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP#strict_csp), which uses a [nonce](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP#nonces) or a [hash](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP#hashes) to indicate to the browser which scripts it expects to see in the document. However, any CSP that prevents uncontrolled execution of inline scripts is much better than none.
 
-- To enforce the use of trusted types, set the [`require-trusted-types-for`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/require-trusted-types-for) directive. See the [Validate and sanitize user input](#use-trusted-types-to-validate-and-sanitize-user-input) guideline.
+- To enforce the use of trusted types, set the [`require-trusted-types-for`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/require-trusted-types-for) directive. See the [Sanitize input before including it in pages as HTML](#sanitize-input-before-including-it-in-pages-as-html) guideline.
 
 - To defend against [clickjacking](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/Clickjacking), set the [`frame-ancestors`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/frame-ancestors) directive.
 
@@ -149,23 +149,43 @@ To protect against certain cross-site leaks, you should decide whether you need 
 - [Protect your resources from web attacks with Fetch Metadata](https://web.dev/articles/fetch-metadata) (web.dev)
 - [Isolation Policies](https://xsleaks.dev/docs/defenses/isolation-policies/) (xsleaks.dev)
 
-### Use Trusted Types to validate and sanitize user input
+### Sanitize input before including it in pages as HTML
 
-Input validation and sanitization are critical for preventing injection attacks, such as SQL injection and [cross-site scripting (XSS)](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/XSS). Ensuring that user inputs conform to expected formats helps mitigate these risks.
+Before interpolating input as HTML, always [sanitize](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/XSS#sanitization) it, to defend against cross-site scripting (XSS) attacks.
 
-To mitigate SQL injection attacks, use [prepared SQL statements with parameterized queries](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html). This ensures that the user input is treated as data rather than SQL commands.
+To do this, adopt one or both of the following strategies:
 
-To mitigate XSS attacks:
+- Use the [Sanitizer API](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Sanitizer_API) if it is available, choosing APIs such as [`Element.setHTML()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/setHTML) that automatically sanitize their input.
 
-- When interpolating input into a page as text, use a reputable templating engine that performs input encoding, and understand the context in which you are interpolating input.
-- When interpolating input as HTML, sanitize it using a reputable library such as [DOMPurify](https://github.com/cure53/DOMPurify). If you're rendering input in the client using DOM APIs like [`innerHTML`](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML), use the [Trusted Types API](https://developer.mozilla.org/en-US/docs/Web/API/Trusted_Types_API) along with the [`require-trusted-types-for`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/require-trusted-types-for) CSP directive, to ensure that input is being passed through a sanitization function.
+- When using [injection sinks](https://developer.mozilla.org/en-US/docs/Web/API/Trusted_Types_API#injection_sink_interfaces) such as [`Element.innerHTML`](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML), use the [Trusted Types API](https://developer.mozilla.org/en-US/docs/Web/API/Trusted_Types_API) along with the [`require-trusted-types-for`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/require-trusted-types-for) CSP directive, to ensure that input is being passed through a sanitization function.
+
+#### Learn more
+
+- [Cross-site scripting (XSS)](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/XSS) (MDN)
+- [HTML Sanitizer API](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Sanitizer_API) (MDN)
+- [Trusted Types guide](https://web.dev/articles/trusted-types) (web.dev)
+- [Trusted Types API](https://developer.mozilla.org/en-US/docs/Web/API/Trusted_Types_API) (MDN)
+
+### Encode input before including it in pages as text
+
+Before interpolating input as text, use [output encoding](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/XSS#output_encoding) to ensure that the input will be treated as text rather than as a language such as HTML. This is a defense against cross-site scripting (XSS) attacks.
+
+- When interpolating input into a page as text, either in the browser or in the server, use a templating engine that performs output encoding.
+
+- Be aware of the [context](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/XSS#document_contexts) in which you are interpolating input, and ensure that the appropriate output encoding will be performed in that context.
+
+#### Learn more
+
+- [Cross-site scripting (XSS)](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/XSS) (MDN)
+- [Output encoding](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html#output-encoding) (OWASP)
+
+### Use prepared SQL statements with parameterized queries
+
+If your web app uses a database and can execute SQL commands on it that are parameterized by user input, always use [prepared SQL statements with parameterized queries](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html). This is a defense against SQL injection attacks, by ensuring that the user input is treated as data rather than SQL commands.
 
 #### Learn more
 
 - [SQL Injection Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html) (OWASP)
-- [Cross-site scripting (XSS)](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/XSS) (MDN)
-- [Trusted Types guide](https://web.dev/articles/trusted-types) (web.dev)
-- [Trusted Types API](https://developer.mozilla.org/en-US/docs/Web/API/Trusted_Types_API) (MDN)
 
 ### Implement restrictions on framing
 
