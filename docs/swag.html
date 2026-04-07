@@ -57,7 +57,7 @@ The primary audience for this document are web developers.
 
 ## Recommended Security Features
 
-This section recommends web platform features you can implement in a web application to help mitigate or respond to various attacks.</p>
+This section recommends web platform features or coding patterns which you can directly apply to the source code or the configuration to make your web application more secure.
 
 ### Use HTTPS
 
@@ -208,72 +208,6 @@ Limit the use of third-party scripts and resources and use Subresource Integrity
 
 - [Subresource Integrity](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity) (MDN)
 
-## Recommended Security Practices
-
-This section recommends practices you can follow, which help reduce the risk of introducing security vulnerabilities into your web application, or help you respond to vulnerabilities
-
-### Evaluate the security metrics of open source libraries
-
-When selecting open source libraries, frameworks, build tools, or similar, take into account open source security best practices.
-
-This helps ensure that the libraries you use are actively maintained and have a good security track record, reducing potential vulnerabilities in your application. Consider the following [Scorecard](https://securityscorecards.dev) metrics: _tbd_
-
-### Require multi-factor authentication for project developers
-
-Ensure all developers working on the project are using multi-factor authentication (MFA) to access the source repository.
-
-Multi-factor authentication adds an additional layer of security by requiring more than one form of verification, reducing the risk of unauthorized access to your codebase.
-
-### Have a documented security policy
-
-Document (in a `SECURITY.md` file) your security policy, including how you want people to notify you of security issues. A clear security policy fosters transparency and encourages responsible disclosure of vulnerabilities, allowing you to address issues promptly and maintain user trust.
-
-#### Learn more
-
-- [Guide to coordinated vulnerability disclosure for open source software projects](https://github.com/ossf/oss-vulnerability-guide)
-
-### Perform threat modeling for your web application
-
-Threat modeling helps identify potential security threats and vulnerabilities in your application architecture, enabling you to proactively address risks before they can be exploited.
-
-#### Learn more
-
-- Threat modeling guide (soon on MDN)
-- Example threat model (soon on MDN)
-
-### Use package managers such as NPM to automatically manage dependencies and enable updates
-
-Package managers streamline the process of managing libraries and dependencies, ensuring that you can easily update to the latest versions, which often include important security patches.
-
-### Monitor known vulnerabilities in your web app's direct & indirect dependencies
-
-Regularly checking for vulnerabilities in both direct and transitive dependencies helps you stay informed about potential security risks and take action to mitigate them.
-
-#### Learn more
-
-- [Configuring Dependabot](https://docs.github.com/en/code-security/how-tos/secure-your-supply-chain/secure-your-dependencies/configuring-dependabot-security-updates) (GitHub)
-
-### Keep dependencies up to date
-
-Keeping dependencies (i.e., libraries, polyfills, frameworks, etc.) up to date minimizes the risk of exploitation through known vulnerabilities. Regular updates should be part of your development lifecycle.
-
-### Do not push secrets to a repository
-
-Storing sensitive information (such as encrypted tokens or passwords) in version control can lead to accidental exposure. Use environment variables or secret management tools to handle sensitive data securely.
-
-### Enforce a code review policy
-
-Implementing a code review process helps catch potential security issues before they are merged into the main codebase, creating a culture of security awareness among developers. Enforce this by enabling branch protection or an equivalent rulesets.
-
-#### Learn more
-
-- [Protected branches](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches) (GitHub)
-- [Rulesets](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/about-rulesets) (GitHub)
-
-### Lock down your server configuration
-
-Ensure that configuration files for your web server are not publicly accessible.
-
 ### Validate and sanitize all server-side requests
 
 Servers that make network requests on behalf of clients are potentially vulnerable to [Server-Side Request Forgery (SSRF)](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/SSRF) attacks.
@@ -346,6 +280,72 @@ Insufficient access control and insecure exposure of object identifiers, such as
 
 - [Insecure Direct Object Reference Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet.html) (OWASP)
 - [Insecure Direct Object Reference (IDOR)](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/IDOR) (MDN)
+
+## Recommended Security Practices
+
+This section recommends practices to follow on how you develop more secure web application code. For example, how to make decisions about your architecture or dependencies, or which tools and policies to look into to keep your environment more secure.
+
+### Evaluate the security metrics of open source libraries
+
+When selecting open source libraries, frameworks, build tools, or similar, take into account open source security best practices.
+
+This helps ensure that the libraries you use are actively maintained and have a good security track record, reducing potential vulnerabilities in your application. Consider the following [Scorecard](https://securityscorecards.dev) metrics: _tbd_
+
+### Require multi-factor authentication for project developers
+
+Ensure all developers working on the project are using multi-factor authentication (MFA) to access the source repository.
+
+Multi-factor authentication adds an additional layer of security by requiring more than one form of verification, reducing the risk of unauthorized access to your codebase.
+
+### Have a documented security policy
+
+Document (in a `SECURITY.md` file) your security policy, including how you want people to notify you of security issues. A clear security policy fosters transparency and encourages responsible disclosure of vulnerabilities, allowing you to address issues promptly and maintain user trust.
+
+#### Learn more
+
+- [Guide to coordinated vulnerability disclosure for open source software projects](https://github.com/ossf/oss-vulnerability-guide)
+
+### Perform threat modeling for your web application
+
+Threat modeling helps identify potential security threats and vulnerabilities in your application architecture, enabling you to proactively address risks before they can be exploited.
+
+#### Learn more
+
+- Threat modeling guide (soon on MDN)
+- Example threat model (soon on MDN)
+
+### Use package managers such as NPM to automatically manage dependencies and enable updates
+
+Package managers streamline the process of managing libraries and dependencies, ensuring that you can easily update to the latest versions, which often include important security patches.
+
+### Monitor known vulnerabilities in your web app's direct & indirect dependencies
+
+Regularly checking for vulnerabilities in both direct and transitive dependencies helps you stay informed about potential security risks and take action to mitigate them.
+
+#### Learn more
+
+- [Configuring Dependabot](https://docs.github.com/en/code-security/how-tos/secure-your-supply-chain/secure-your-dependencies/configuring-dependabot-security-updates) (GitHub)
+
+### Keep dependencies up to date
+
+Keeping dependencies (i.e., libraries, polyfills, frameworks, etc.) up to date minimizes the risk of exploitation through known vulnerabilities. Regular updates should be part of your development lifecycle.
+
+### Do not push secrets to a repository
+
+Storing sensitive information (such as encrypted tokens or passwords) in version control can lead to accidental exposure. Use environment variables or secret management tools to handle sensitive data securely.
+
+### Enforce a code review policy
+
+Implementing a code review process helps catch potential security issues before they are merged into the main codebase, creating a culture of security awareness among developers. Enforce this by enabling branch protection or an equivalent rulesets.
+
+#### Learn more
+
+- [Protected branches](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches) (GitHub)
+- [Rulesets](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/about-rulesets) (GitHub)
+
+### Lock down your server configuration
+
+Ensure that configuration files for your web server are not publicly accessible.
 
 </body>
 </html>
