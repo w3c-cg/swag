@@ -312,14 +312,25 @@ Document (in a `SECURITY.md` file) your security policy, including how you want 
 
 - [Guide to coordinated vulnerability disclosure for open source software projects](https://github.com/ossf/oss-vulnerability-guide)
 
-### Perform threat modeling for your web application
+### Perform continuos threat modeling
 
-Threat modeling helps identify potential security threats and vulnerabilities in your application architecture, enabling you to proactively address risks before they can be exploited.
+Threat modeling is the process of creating a representative model that describes your systems's threats. It is form of risk assessment with the goal to analyze the most probable attack vectors and to identify assets most desired by an attacker. It is a structured, repeatable process for analyzing a representation of a system so you can identify relevant security and privacy concerns, understand what can go wrong, and decide how to respond.
+
+Per the [Threat Modeling Manifesto](https://www.threatmodelingmanifesto.org/), creating a threat model typically involves answering four key questions:
+
+1. What are we working on?
+2. What can go wrong?
+3. What are we going to do about it?
+4. Did we do a good enough job?
+
+The produced threat model document needs to be extensible for future re-assessment and ideally lives version-controlled within your codebase.
 
 #### Learn more
 
-- Threat modeling guide (soon on MDN)
-- Example threat model (soon on MDN)
+- [Threat modeling guide for web developers](https://developer.mozilla.org/en-US/docs/Web/Security/Threat_modeling) (MDN)
+- [Example threat model](https://developer.mozilla.org/en-US/docs/Web/Security/Threat_modeling/Example_threat_model) (MDN)
+- [Threat Modeling Guide for specification authors](https://w3c.github.io/threat-modeling-guide/) (W3C)
+- [Threat Model for the Web](https://w3c.github.io/threat-model-web/) (W3C)
 
 ### Control dependency updates
 
