@@ -281,6 +281,26 @@ Insufficient access control and insecure exposure of object identifiers, such as
 - [Insecure Direct Object Reference Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet.html) (OWASP)
 - [Insecure Direct Object Reference (IDOR)](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/IDOR) (MDN)
 
+## Authentication guidelines
+
+This section outline guidelines for websites that need to authenticate users.
+
+We recommend that websites should use [passkeys](https://developer.mozilla.org/en-US/docs/Web/Security/Authentication/Passkeys) to authenticate users wherever possible. If you need to support other methods such as [one-time passwords (OTP)](https://developer.mozilla.org/en-US/docs/Web/Security/Authentication/OTP) or [passwords](https://developer.mozilla.org/en-US/docs/Web/Security/Authentication/Passwords), there are practices you can follow to minimise the risks.
+
+### Use passkeys to authenticate users
+
+Websites should support [passkeys](https://developer.mozilla.org/en-US/docs/Web/Security/Authentication/Passkeys) as an authentication mechanism. If you also support other methods such as passwords, encourage users to prefer passkeys, and enable users to [switch from passwords to passkeys](https://developer.mozilla.org/en-US/docs/Web/Security/Authentication/Passkeys#migrating_from_passwords).
+
+Passkeys provide protection against many common attacks on authentication systems, including [phishing](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/Phishing) attacks.
+
+### Follow good practices for OTP authentication
+
+Enable users to use [passkeys](https://developer.mozilla.org/en-US/docs/Web/Security/Authentication/Passkeys) to authenticate themselves to your site.
+
+### Follow good practices for password-based authentication
+
+We don't recommend that websites offer passwords as an authentication method,
+
 ## Operational Practices
 
 This section recommends operational practices. For example, how to make decisions about your architecture or dependencies, or which tools and policies to adapt.
