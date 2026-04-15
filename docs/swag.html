@@ -341,9 +341,24 @@ Threat modeling helps identify potential security threats and vulnerabilities in
 - Threat modeling guide (soon on MDN)
 - Example threat model (soon on MDN)
 
-### Use package managers such as NPM to automatically manage dependencies and enable updates
+### Control dependency updates
 
-Package managers streamline the process of managing libraries and dependencies, ensuring that you can easily update to the latest versions, which often include important security patches.
+If your project uses any third-party dependencies, you need to be able to respond when updated versions of those packages are released. There are two security considerations here:
+
+- If a vulnerability is found in a dependency, and a fixed version is released, you need to adopt it as soon as possible.
+- If an attacker has compromised the account of one of the dependency's maintainers, and used it to publish a malicious update, you need to avoid adopting it.
+
+To address both these considerations, a software project should:
+
+- Use a package manager and a tool, such as [Dependabot](https://docs.github.com/en/code-security/how-tos/secure-your-supply-chain/secure-your-dependencies/configuring-dependabot-security-updates) or [Renovate](https://docs.renovatebot.com/), that can monitor your dependencies for known vulnerabilities and updates.
+- Use a [lockfile](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/Supply_chain_attacks#using_a_lockfile) to give you precise control over the versions of your dependencies, and to prevent your build system from automatically updating dependencies.
+- Have a process to review suggested dependency updates, to evaluate the risk/reward of accepting them.
+- Consider enforcing a delay before accepting updates, using settings like Deno's [`minimumDependencyAge`](https://deno.com/blog/v2.6#controlling-dependency-stability): this increases the chances that a malicious update will be discovered before you have accepted it into your own project.
+
+#### Learn more
+
+- [Configuring Dependabot](https://docs.github.com/en/code-security/how-tos/secure-your-supply-chain/secure-your-dependencies/configuring-dependabot-security-updates) (GitHub)
+- [Package Managers Need to Cool Down](https://nesbitt.io/2026/03/04/package-managers-need-to-cool-down.html)
 
 ### Monitor known vulnerabilities in your web app's direct & indirect dependencies
 
@@ -353,9 +368,6 @@ Regularly checking for vulnerabilities in both direct and transitive dependencie
 
 - [Configuring Dependabot](https://docs.github.com/en/code-security/how-tos/secure-your-supply-chain/secure-your-dependencies/configuring-dependabot-security-updates) (GitHub)
 
-### Keep dependencies up to date
-
-Keeping dependencies (i.e., libraries, polyfills, frameworks, etc.) up to date minimizes the risk of exploitation through known vulnerabilities. Regular updates should be part of your development lifecycle.
 
 ### Do not push secrets to a repository
 
