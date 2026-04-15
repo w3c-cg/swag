@@ -323,7 +323,7 @@ If your project uses any third-party dependencies, you need to be able to respon
 
 To address both these considerations, a software project should:
 
-- Use a package manager and a tool such as [Dependabot](https://docs.github.com/en/code-security/how-tos/secure-your-supply-chain/secure-your-dependencies/configuring-dependabot-security-updates) that can monitor your dependencies for known vulnerabilities and updates.
+- Use a package manager and a tool, such as [Dependabot](https://docs.github.com/en/code-security/how-tos/secure-your-supply-chain/secure-your-dependencies/configuring-dependabot-security-updates) or [Renovate](https://docs.renovatebot.com/), that can monitor your dependencies for known vulnerabilities and updates.
 - Use a [lockfile](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/Supply_chain_attacks#using_a_lockfile) to give you precise control over the versions of your dependencies, and to prevent your build system from automatically updating dependencies.
 - Have a process to review suggested dependency updates, to evaluate the risk/reward of accepting them.
 - Consider enforcing a delay before accepting updates, using settings like Deno's [`minimumDependencyAge`](https://deno.com/blog/v2.6#controlling-dependency-stability): this increases the chances that a malicious update will be discovered before you have accepted it into your own project.
