@@ -287,19 +287,44 @@ This section outline guidelines for websites that need to authenticate users.
 
 We recommend that websites should use [passkeys](https://developer.mozilla.org/en-US/docs/Web/Security/Authentication/Passkeys) to authenticate users wherever possible. If you need to support other methods such as [one-time passwords (OTP)](https://developer.mozilla.org/en-US/docs/Web/Security/Authentication/OTP) or [passwords](https://developer.mozilla.org/en-US/docs/Web/Security/Authentication/Passwords), there are practices you can follow to minimise the risks.
 
-### Use passkeys to authenticate users
+### Support passkeys
 
 Websites should support [passkeys](https://developer.mozilla.org/en-US/docs/Web/Security/Authentication/Passkeys) as an authentication mechanism. If you also support other methods such as passwords, encourage users to prefer passkeys, and enable users to [switch from passwords to passkeys](https://developer.mozilla.org/en-US/docs/Web/Security/Authentication/Passkeys#migrating_from_passwords).
 
 Passkeys provide protection against many common attacks on authentication systems, including [phishing](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/Phishing) attacks.
 
-### Follow good practices for OTP authentication
+One risk of using passkeys is for users to become locked out of their account if they lose the device that contains their passkeys. Implementations should help protect against this by allowing users to create multiple passkeys on different authenticators, and encouraging users to create passkeys on authenticators that are automatically backed up.
 
-Enable users to use [passkeys](https://developer.mozilla.org/en-US/docs/Web/Security/Authentication/Passkeys) to authenticate themselves to your site.
+Passkey implementations should allow users to see and edit metadata about the passkeys that they have created, to create new passkeys, and to delete existing passkeys.
+
+Implementations should use reputable packages for verifying the assertions that were generated using passkeys. Implementations must:
+
+- Verify assertion signatures.
+- Verify that the assertion's origin is what the website expects.
 
 ### Follow good practices for password-based authentication
 
-We don't recommend that websites offer passwords as an authentication method,
+Passwords have [several well-known security weaknesses](https://developer.mozilla.org/en-US/docs/Web/Security/Authentication/Passwords#weaknesses_of_password-based_authentication), which are commonly exploited by attackers, so we don't recommend that websites offer passwords as an authentication method. If you do need to support them, there are some practices you can follow to minimise the risks:
+
+- [Ensure that password managers can work with your site.](https://developer.mozilla.org/en-US/docs/Web/Security/Authentication/Passwords#supporting_password_managers)
+- When users create new passwords, [check their strength and reject weak passwords](https://developer.mozilla.org/en-US/docs/Web/Security/Authentication/Passwords#choosing_strong_passwords).
+- Ensure passwords are [transmitted](https://developer.mozilla.org/en-US/docs/Web/Security/Authentication/Passwords#secure_password_transmission) and [stored](https://developer.mozilla.org/en-US/docs/Web/Security/Authentication/Passwords#secure_password_storage) securely.
+- [Implement a secure process for users to change passwords.](https://developer.mozilla.org/en-US/docs/Web/Security/Authentication/Passwords#password_reset)
+
+Passwords can be combined with other authentication methods to make a multi-factor authentication system. Often the additional method is a one-time password, which represents "something the user has" to augment the password's "something the user knows". This type of system is more secure than passwords alone, but although it makes phishing attacks more difficult, [it does not prevent them](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/Phishing#multi-factor_authentication).
+
+#### Learn more
+
+- [Passwords](https://developer.mozilla.org/en-US/docs/Web/Security/Authentication/Passwords)
+
+
+### Follow good practices for OTP authentication
+
+A one-time password (OTP) is a code that is specific to a single login attempt. The website generates the code and either sends it to the user in a separate channel, such as an email, or the user's device independently generates the code. The user then enters the code on the site to log in.
+
+OTP authentication is more secure than password-based authentication: it provides a defense against some of the weaknesses of passwords, notably [guessing](https://developer.mozilla.org/en-US/docs/Web/Security/Authentication/Passwords#guessing) and [credential stuffing](https://developer.mozilla.org/en-US/docs/Web/Security/Authentication/Passwords#credential_stuffing). However, it is still vulnerable to phishing attacks.
+
+If you do use OTP, prefer to use [Time-based OTP (TOTP)](https://developer.mozilla.org/en-US/docs/Web/Security/Authentication/OTP#totp) in preference to methods which send the code to the user's device via email or SMS. In particular, avoid SMS-based OTP, because it is too easy for attackers to intercept the SMS that contains the code.
 
 ## Operational Practices
 
