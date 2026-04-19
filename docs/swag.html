@@ -302,6 +302,10 @@ Implementations should use reputable packages for verifying the assertions that 
 - Verify assertion signatures.
 - Verify that the assertion's origin is what the website expects.
 
+#### Learn more
+
+- [Passkeys](https://developer.mozilla.org/en-US/docs/Web/Security/Authentication/Passkeys)
+
 ### Follow good practices for password-based authentication
 
 Passwords have [several well-known security weaknesses](https://developer.mozilla.org/en-US/docs/Web/Security/Authentication/Passwords#weaknesses_of_password-based_authentication), which are commonly exploited by attackers, so we don't recommend that websites offer passwords as an authentication method. If you do need to support them, there are some practices you can follow to minimise the risks:
@@ -317,7 +321,6 @@ Passwords can be combined with other authentication methods to make a multi-fact
 
 - [Passwords](https://developer.mozilla.org/en-US/docs/Web/Security/Authentication/Passwords)
 
-
 ### Follow good practices for OTP authentication
 
 A one-time password (OTP) is a code that is specific to a single login attempt. The website generates the code and either sends it to the user in a separate channel, such as an email, or the user's device independently generates the code. The user then enters the code on the site to log in.
@@ -325,6 +328,10 @@ A one-time password (OTP) is a code that is specific to a single login attempt. 
 OTP authentication is more secure than password-based authentication: it provides a defense against some of the weaknesses of passwords, notably [guessing](https://developer.mozilla.org/en-US/docs/Web/Security/Authentication/Passwords#guessing) and [credential stuffing](https://developer.mozilla.org/en-US/docs/Web/Security/Authentication/Passwords#credential_stuffing). However, it is still vulnerable to phishing attacks.
 
 If you do use OTP, prefer to use [Time-based OTP (TOTP)](https://developer.mozilla.org/en-US/docs/Web/Security/Authentication/OTP#totp) in preference to methods which send the code to the user's device via email or SMS. In particular, avoid SMS-based OTP, because it is too easy for attackers to intercept the SMS that contains the code.
+
+#### Learn more
+
+- [OTP](https://developer.mozilla.org/en-US/docs/Web/Security/Authentication/OTP)
 
 ## Operational Practices
 
