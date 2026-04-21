@@ -306,7 +306,7 @@ Implementations should use reputable packages for verifying the assertions that 
 
 - [Passkeys](https://developer.mozilla.org/en-US/docs/Web/Security/Authentication/Passkeys)
 
-### Follow good practices for password-based authentication
+### Password-based authentication practices
 
 Passwords have [several well-known security weaknesses](https://developer.mozilla.org/en-US/docs/Web/Security/Authentication/Passwords#weaknesses_of_password-based_authentication), which are commonly exploited by attackers, so we don't recommend that websites offer passwords as an authentication method. If you do need to support them, there are some practices you can follow to minimize the risks:
 
@@ -321,7 +321,7 @@ Passwords can be combined with other authentication methods to make a multi-fact
 
 - [Passwords](https://developer.mozilla.org/en-US/docs/Web/Security/Authentication/Passwords)
 
-### Follow good practices for OTP authentication
+### OTP authentication practices
 
 A one-time password (OTP) is a code that is specific to a single login attempt. The website generates the code and either sends it to the user in a separate channel, such as an email, or the user's device independently generates the code. The user then enters the code on the site to log in.
 
@@ -332,6 +332,22 @@ If you do use OTP, prefer to use [Time-based OTP (TOTP)](https://developer.mozil
 #### Learn more
 
 - [OTP](https://developer.mozilla.org/en-US/docs/Web/Security/Authentication/OTP)
+
+### Session management practices
+
+Implement good practices to remember an authenticated user's identity in your website:
+
+- If your architecture allows it, choose a [centralized](https://developer.mozilla.org/en-US/docs/Web/Security/Authentication/Session_management#centralized_session_management) session management architecture, in which the user's state is stored in the server, and the client is given an ID for the session, in preference to a [decentralized](https://developer.mozilla.org/en-US/docs/Web/Security/Authentication/Session_management#decentralized_session_management) architecture, in which the client stores the user's state as a digitally signed token. This is mainly because [it's harder to invalidate a session in a decentralized architecture](https://developer.mozilla.org/en-US/docs/Web/Security/Authentication/Session_management#invalidating_sessions).
+- Store the session identifier in a cookie. Set its `Secure` and `HttpOnly` attributes, and set the `SameSite` attribute to `Strict` if possible, and otherwise `Lax`.
+- Always generate a new session ID, and invalidate any existing one, whenever the user signs in.
+- Define and implement a policy for session expiry, based on the age of the session and the time since the user was last active.
+- Invalidate the user's session, and make the user reauthenticate, when the user attempts a high-risk operation (such as changing their credentials) or you have some reason to suspect that the session ID might have been stolen.
+- Use a reputable session management framework or library, rather than implementing session management yourself.
+
+#### Learn more
+
+- [Session management](https://developer.mozilla.org/en-US/docs/Web/Security/Authentication/Session_management) (MDN)
+- [Session Management Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html) (OWASP)
 
 ## Operational Practices
 
