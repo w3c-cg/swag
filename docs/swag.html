@@ -353,12 +353,6 @@ Implement good practices to remember an authenticated user's identity in your we
 
 This section recommends operational practices. For example, how to make decisions about your architecture or dependencies, or which tools and policies to adapt.
 
-### Evaluate the security metrics of open source libraries
-
-When selecting open source libraries, frameworks, build tools, or similar, take into account open source security best practices.
-
-This helps ensure that the libraries you use are actively maintained and have a good security track record, reducing potential vulnerabilities in your application. Consider the following [Scorecard](https://securityscorecards.dev) metrics: _tbd_
-
 ### Require strong authentication for project maintainers
 
 Supply chain attacks often target project maintainers: by gaining control of a maintainer's account an attacker can introduce malicious code or ship a malicious update of the project.
@@ -400,6 +394,16 @@ The threat model document needs to be extensible for future re-assessment and id
 - [Threat Modeling Guide for specification authors](https://w3c.github.io/threat-modeling-guide/) (W3C)
 - [Threat Model for the Web](https://w3c.github.io/threat-model-web/) (W3C)
 
+### Evaluate new dependencies
+
+Define and follow a process to evaluate new dependencies before adding them to your project. This includes not only software packages used by your code but tools such as text editors and IDEs, extensions, and source control systems.
+
+The [Concise Guide for Evaluating Open Source Software](https://best.openssf.org/Concise-Guide-for-Evaluating-Open-Source-Software), published by the [OpenSSF](https://openssf.org/), lists questions you should ask before adding a new dependency. It includes considerations such as:
+
+- Is the dependency actively maintained?
+- Does the dependency have a record of fixing issues?
+- Does the dependency have a process for reporting and responding to security vulnerabilities?
+
 ### Control dependency updates
 
 If your project uses any third-party dependencies, you need to be able to respond when updated versions of those packages are released. There are two security considerations here:
@@ -427,14 +431,20 @@ Regularly checking for vulnerabilities in both direct and transitive dependencie
 
 - [Configuring Dependabot](https://docs.github.com/en/code-security/how-tos/secure-your-supply-chain/secure-your-dependencies/configuring-dependabot-security-updates) (GitHub)
 
+### Handle secrets securely
 
-### Do not push secrets to a repository
+Project maintainers typically need to use credentials, such as passwords or API keys, that need to be kept secret. Projects should ensure that these are handled properly:
 
-Storing sensitive information (such as encrypted tokens or passwords) in version control can lead to accidental exposure. Use environment variables or secret management tools to handle sensitive data securely.
+- Control access to secrets, and limit access to the maintainers who need them.
+- Secrets should never be checked into public repositories. Configure your source control system to scan your repositories for secrets that have been accidentally committed.
 
-### Enforce a code review policy
+### Secure your source code configuration
 
-Implementing a code review process helps catch potential security issues before they are merged into the main codebase, creating a culture of security awareness among developers. Enforce this by enabling branch protection or an equivalent rulesets.
+Understand and apply secure settings for your tools, especially your source control system. Key protections are:
+
+- Require that pull requests go through review and explicit approval from a code owner before they can be merged. Enforce this by enabling branch protection or an equivalent rulesets.
+- Ensuring that pull requests pass continuous integration checks before they can be merged.
+- Requiring that commits are signed.
 
 #### Learn more
 
