@@ -425,6 +425,14 @@ To address both these considerations, a software project should:
 - [Configuring Dependabot](https://docs.github.com/en/code-security/how-tos/secure-your-supply-chain/secure-your-dependencies/configuring-dependabot-security-updates) (GitHub)
 - [Package Managers Need to Cool Down](https://nesbitt.io/2026/03/04/package-managers-need-to-cool-down.html)
 
+### Use trusted publishing
+
+If you publish packages using [npm](https://www.npmjs.com/) or package managers, use trusted publishing. With trusted publishing, your CI/CD platform (for example, GitHub Actions or GitLab CI/CD) authenticates to the registry with a short-lived token, reducing the possibility that this can be compromised. Trusted publishing also allows consumers to verify a package was built from the source repository they expect.
+
+#### Learn more
+
+ - [Trusted publishing for npm packages](https://docs.npmjs.com/trusted-publishers) (npmjs.com)
+
 ### Monitor known vulnerabilities in your web app's direct & indirect dependencies
 
 Regularly checking for vulnerabilities in both direct and transitive dependencies helps you stay informed about potential security risks and take action to mitigate them.
